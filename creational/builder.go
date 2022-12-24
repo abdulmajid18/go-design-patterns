@@ -1,20 +1,24 @@
 package creational
 
-type ManufacturingDirector struct{}
+type ManufacturingDirector struct {
+	builder BuildProcess
+}
 
 type BuildProcess interface {
 	SetWheels() BuildProcess
 	SetSeats() BuildProcess
 	SetStructure() BuildProcess
-	// GetVehicle() BuildProcess
+	GetVehicle() VehicleProduct
 }
 
 func (f *ManufacturingDirector) Construct() {
 	// Implementation goes here
+	f.builder.SetSeats().SetStructure().SetWheels()
 }
 
 func (f *ManufacturingDirector) SetBuilder(b BuildProcess) {
 	// Implementation goes here
+	f.builder = b
 }
 
 type VehicleProduct struct {
@@ -23,32 +27,49 @@ type VehicleProduct struct {
 	Structure string
 }
 
-type CarBuilder struct{}
+type CarBuilder struct {
+	v VehicleProduct
+}
 
 func (c *CarBuilder) SetWheels() BuildProcess {
-	return nil
+	c.v.Wheels = 4
+	return c
 }
 func (c *CarBuilder) SetSeats() BuildProcess {
-	return nil
+	c.v.Seats = 5
+	return c
 }
 func (c *CarBuilder) SetStructure() BuildProcess {
-	return nil
+	c.v.Structure = "Car"
+	return c
+}
+func (c *CarBuilder) GetVehicle() VehicleProduct {
+	return c.v
 }
 func (c *CarBuilder) Build() VehicleProduct {
-	return VehicleProduct{}
+	return c.v
 }
 
-type BikeBuilder struct{}
+type BikeBuilder struct {
+	v VehicleProduct
+}
 
 func (b *BikeBuilder) SetWheels() BuildProcess {
-	return nil
+	b.v.Wheels = 2
+	return b
 }
 func (b *BikeBuilder) SetSeats() BuildProcess {
-	return nil
+	b.v.Seats = 2
+	return b
 }
 func (b *BikeBuilder) SetStructure() BuildProcess {
-	return nil
+	b.v.Structure = "Motorbike"
+	return b
+}
+
+func (b *BikeBuilder) GetVehicle() VehicleProduct {
+	return b.v
 }
 func (b *BikeBuilder) Build() VehicleProduct {
-	return VehicleProduct{}
+	return b.v
 }
