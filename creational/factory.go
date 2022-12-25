@@ -1,6 +1,8 @@
 package creational
 
-import "errors"
+import (
+	"fmt"
+)
 
 type PaymentMethod interface {
 	Pay(amount float32) string
@@ -12,7 +14,14 @@ const (
 )
 
 func GetPaymentMethod(m int) (PaymentMethod, error) {
-	return nil, errors.New("not implementedy yet")
+	switch m {
+	case Cash:
+		return new(CashPM), nil
+	case DebitCard:
+		return new(DebitCardPM), nil
+	default:
+		return nil, fmt.Errorf("payment method %d not recognized", m)
+	}
 }
 
 type CashPM struct{}
