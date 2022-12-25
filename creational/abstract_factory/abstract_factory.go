@@ -2,7 +2,7 @@ package abstract_factory
 
 import "fmt"
 
-type AbstractFactory interface {
+type VehicleFactory interface {
 	Build(v int) (Vehicle, error)
 }
 
@@ -11,8 +11,12 @@ const (
 	MotorbikeFactoryType = 2
 )
 
-func BuildFactory(f int) (AbstractFactory, error) {
+func BuildFactory(f int) (VehicleFactory, error) {
 	switch f {
+	case CarFactoryType:
+		return new(CarFactory), nil
+	case MotorbikeFactoryType:
+		return new(MotorbikeFactory), nil
 	default:
 		return nil, fmt.Errorf("factory with id %d not recognized", f)
 	}
