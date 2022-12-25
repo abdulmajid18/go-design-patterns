@@ -2,10 +2,6 @@ package abstract_factory
 
 import "fmt"
 
-type VehicleFactory interface {
-	NewVehicle(v int) (Vehicle, error)
-}
-
 const (
 	LuxuryCarType = 1
 	FamilyCarType = 2
@@ -13,7 +9,7 @@ const (
 
 type CarFactory struct{}
 
-func (c *CarFactory) NewVehicle(v int) (Vehicle, error) {
+func (c *CarFactory) Build(v int) (Vehicle, error) {
 	switch v {
 	case LuxuryCarType:
 		return new(LuxuryCar), nil
