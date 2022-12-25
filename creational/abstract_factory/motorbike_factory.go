@@ -16,6 +16,6 @@ func (m *MotorbikeFactory) Build(v int) (Vehicle, error) {
 	case CruiseMotorbikeType:
 		return new(CruiseMotorbike), nil
 	default:
-		return nil, fmt.Errorf("vehicle of ype %d not recognized\n", v)
+		return nil, fmt.Errorf("vehicle of ype %d not recognized", v)
 	}
 }
