@@ -11,7 +11,7 @@ const (
 	MotorbikeFactoryType = 2
 )
 
-func BuildFactory(f int) (VehicleFactory, error) {
+func BuildFactory(f int) (AbstractFactory, error) {
 	switch f {
 	default:
 		return nil, fmt.Errorf("factory with id %d not recognized", f)
