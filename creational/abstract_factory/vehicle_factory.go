@@ -20,6 +20,6 @@ func (c *CarFactory) NewVehicle(v int) (Vehicle, error) {
 	case FamilyCarType:
 		return new(FamilyCar), nil
 	default:
-		return nil, fmt.Errorf("vehicle of ype %d not recognized\n", v)
+		return nil, fmt.Errorf("vehicle of ype %d not recognized", v)
 	}
 }
