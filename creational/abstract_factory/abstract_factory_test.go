@@ -1,6 +1,8 @@
 package abstract_factory
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestMotorbikeFactory(t *testing.T) {
 	motorbikeF, err := BuildFactory(MotorbikeFactoryType)
